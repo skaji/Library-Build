@@ -103,7 +103,7 @@ sub _build {
     chdir $dir or die;
     $ENV{PREFIX}   = $self->config->PREFIX;
     $ENV{LDFLAGS}  = $self->config->LDFLAGS;
-    $ENV{CPPFLAGS} = $self->config->LDFLAGS;
+    $ENV{CPPFLAGS} = $self->config->CPPFLAGS;
 
     print <<"...";
 ----------------------------------------------
@@ -219,25 +219,33 @@ sub xsystem {
 }
 
 
-
-
-
 1;
 __END__
+
+=for stopwords library-build.fatpack autotools fatpacked
 
 =encoding utf-8
 
 =head1 NAME
 
-Library::Build - It's new $module
+Library::Build - build libraries
 
 =head1 SYNOPSIS
 
-    use Library::Build;
+    > curl -O https://raw.githubusercontent.com/shoichikaji/Library-Build/master/library-build.fatpack
+    > chmod +x library-build.fatpack
+    > ./library-build.fatpack http://ftp.gnu.org/gnu/tar/tar-1.27.tar.xz
 
 =head1 DESCRIPTION
 
-Library::Build is ...
+Library::Build may help you build libraries.
+
+If you build autotools style libraries to your favorite directory,
+you should set C<LDFLAGS>, C<CPPFLAGS> appropriately.
+If you're tired of it, this module helps you.
+
+The fatpacked script `library-build.fatpack` only requires perl 5.8.5+,
+you can try it easily. See SYNOPSIS.
 
 =head1 LICENSE
 

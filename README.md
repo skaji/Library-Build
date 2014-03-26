@@ -1,14 +1,23 @@
 # NAME
 
-Library::Build - It's new $module
+Library::Build - build libraries
 
 # SYNOPSIS
 
-    use Library::Build;
+    > curl -O https://raw.githubusercontent.com/shoichikaji/Library-Build/master/library-build.fatpack
+    > chmod +x library-build.fatpack
+    > ./library-build.fatpack http://ftp.gnu.org/gnu/tar/tar-1.27.tar.xz
 
 # DESCRIPTION
 
-Library::Build is ...
+Library::Build may help you build libraries.
+
+If you build autotools style libraries to your favorite directory,
+you should set `LDFLAGS`, `CPPFLAGS` appropriately.
+If you're tired of it, this module helps you.
+
+The fatpacked script \`library-build.fatpack\` only requires perl 5.8.5+,
+you can try it easily. See SYNOPSIS.
 
 # LICENSE
 
