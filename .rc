@@ -1,0 +1,8 @@
+# usage: source .rc
+
+DIR=$(cd $(dirname ${BASH_SOURCE:-$0}) >/dev/null; pwd)
+
+export LIBRARY_BUILD_DEBUG=1
+
+export PATH=$DIR/local/bin:$PATH
+export PERL5LIB=$DIR/lib:$DIR/local/lib/perl5

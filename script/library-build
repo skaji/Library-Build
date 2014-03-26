@@ -1,0 +1,22 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+use utf8;
+use Library::Build;
+
+my $builder = Library::Build->new;
+$builder->parse_options(@ARGV);
+$builder->build;
+
+__END__
+
+=head1 NAME
+
+library-build - build library
+
+=head1 AUTHOR
+
+Shoichi Kaji
+
+=cut
+
