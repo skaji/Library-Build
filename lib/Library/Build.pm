@@ -244,7 +244,7 @@ If you build autotools style libraries to your favorite directory,
 you should set C<LDFLAGS>, C<CPPFLAGS> appropriately.
 If you're tired of it, this module helps you.
 
-The fatpacked script `library-build.fatpack` only requires perl 5.8.5+,
+The fatpacked script C<library-build.fatpack> only requires perl 5.8.5+,
 you can try it easily. See SYNOPSIS.
 
 =head1 LICENSE
