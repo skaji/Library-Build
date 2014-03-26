@@ -163,7 +163,7 @@ sub get {
 }
 sub cache_get {
     my ($self, $file) = @_;
-    my $guard = $self->config->cache_dir;
+    my $guard = pushd $self->config->cache_dir;
     my ($matched) = glob "$file*";
     if ($matched) {
         return catfile($self->config->cache_dir, $matched);
