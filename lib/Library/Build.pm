@@ -41,7 +41,6 @@ sub new {
 }
 sub config { shift->{config} }
 sub http   { shift->{http} }
-sub path   { @{ shift->{path} } }
 sub shell  { shift->{shell} }
 
 sub parse_options {

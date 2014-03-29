@@ -13,7 +13,7 @@ sub new {
     unless (-d $prefix) {
         mkpath $prefix or die "ERROR cannot mkpath $prefix: $!";
     }
-    my $cache_dir = $opt{cache_dir} || catdir($home, ".library-biuld/cache");
+    my $cache_dir = $opt{cache_dir} || catdir($home, ".library-build/cache");
     my $build_dir = $opt{build_dir} || catdir($home, ".library-build/build");
     for my $dir (grep !-d, $cache_dir, $build_dir) {
         mkpath $dir or die "ERROR cannot mkpath $dir: $!";
