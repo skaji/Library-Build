@@ -41,25 +41,36 @@ sub type { shift->{type} }
 sub archive { shift->{archive} }
 
 sub extract {
-    my $self = shift;
+    my ($self, %option) = @_;
+    my $to = $option{to};
+    if ($to && !-d $to) {
+        die "ERROR missing directory '$to'";
+    }
     my $archive = $self->{archive};
     my $type    = $self->{type};
     my %original = map { $_ => 1 } glob "*";
+    my @cmd;
     if ($type eq 'tar.gz') {
-        !system "tar", "xzf", $archive or die "ERROR tar xzf $archive faild";
+        push @cmd, "tar", "xzf", $archive, $to ? (-C => $to) : ();
     } elsif ($type eq 'tar.bz2') {
-        !system "tar", "xjf", $archive or die "ERROR tar xjf $archive faild";
+        push @cmd, "tar", "xjf", $archive, $to ? (-C => $to) : ();
     } elsif ($type eq 'tar.xz') {
-        !system "tar", "xJf", $archive or die "ERROR tar xJf $archive faild";
+        push @cmd, "tar", "xJf", $archive, $to ? (-C => $to) : ();
     } elsif ($type eq 'zip') {
-        !system "unzip", $archive or die "ERROR unzip $archive faild";
+        push @cmd, 'unzip', "-q", $archive, $to ? (-d => $to) : ();
     } else {
         die;
     }
+    !system @cmd or die "ERRRO failed @cmd\n";
 
-    my ($top_dir) = grep { !$original{$_} } glob "*";
-    $self->{top_dir} = $top_dir;
-    return $top_dir;
+    my @extracted = grep { !$original{$_} } glob "*";
+    die "ERROR failed to extract $archive" unless @extracted;
+    if (@extracted > 1) {
+        warn "WARN $archive yields not one directory but followings:\n";
+        warn "  $_\n" for sort @extracted;
+    }
+    $self->{top_dir} = $extracted[0];
+    return $self->{top_dir};
 }
 
 sub natural_name {

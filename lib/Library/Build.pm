@@ -94,9 +94,9 @@ sub _build {
     );
     mkpath $build_dir or die;
     chdir $build_dir or die;
-    copy $file, ".";
-    my ($archive) = glob "*";
-    Library::Build::Archive->new(archive => $archive)->extract;
+    Library::Build::Archive
+        ->new(archive => $file)
+        ->extract(to => ".");
     my ($dir) = grep -d, glob "*";
 
     chdir $dir or die;
