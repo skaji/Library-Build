@@ -42,5 +42,9 @@ sub CPPFLAGS {
     my $prefix = shift->prefix;
     "-I$prefix/include";
 }
+sub PKG_CONFIG_PATH {
+    my $prefix = shift->prefix;
+    "$prefix/lib/pkgconfig";
+}
 
 1;

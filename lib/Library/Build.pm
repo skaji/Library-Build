@@ -103,15 +103,17 @@ sub _build {
     $ENV{PREFIX}   = $self->config->PREFIX;
     $ENV{LDFLAGS}  = $self->config->LDFLAGS;
     $ENV{CPPFLAGS} = $self->config->CPPFLAGS;
+    $ENV{PKG_CONFIG_PATH} = $self->config->PKG_CONFIG_PATH;
 
     print <<"...";
 ----------------------------------------------
 Set the following environment variables:
 
-PREFIX   $ENV{PREFIX}
-CPPFLAGS $ENV{CPPFLAGS}
-LDFLAGS  $ENV{LDFLAGS}
-PATH     $ENV{PATH}
+PREFIX          $ENV{PREFIX}
+CPPFLAGS        $ENV{CPPFLAGS}
+LDFLAGS         $ENV{LDFLAGS}
+PATH            $ENV{PATH}
+PKG_CONFIG_PATH $ENV{PKG_CONFIG_PATH}
 
 How to compile, for example;
 ./configure --help
